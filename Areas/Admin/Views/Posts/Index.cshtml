@@ -1,0 +1,51 @@
+﻿@model List<Post>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="d-flex justify-content-end my-4">
+
+            <a class="btn btn-outline-success" asp-area="Admin" asp-controller="Posts" asp-action="Create">Create</a>
+        </div>
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Responsive Table</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Number</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Settings</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+               
+             @foreach (Post post in Model)
+                    {
+                        <tr>
+                            <th >@count</th>
+                            <td>@post.Title</td>
+                            <td>@post.Description</td>
+                            <td><img src="~/assets/images/@post.ImagePath" height="100"/></td>
+                            <td>
+
+                                <a class="btn btn-outline-warning" asp-area="Admin" asp-controller="Posts" asp-action="Update" asp-route-Id="@post.Id">Update</a>
+                                <a class="btn btn-danger" asp-area="Admin" asp-controller="Posts" asp-action="Delete" asp-route-Id="@post.Id">Delete</a>
+                            </td>
+                            
+                        </tr>
+                        count++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+   
+    
